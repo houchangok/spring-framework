@@ -113,7 +113,7 @@ import org.springframework.lang.Nullable;
  * @see DisposableBean#destroy
  * @see org.springframework.beans.factory.support.RootBeanDefinition#getDestroyMethodName
  */
-public interface BeanFactory {
+public interface BeanFactory {  //spring的顶级容器
 
 	/**
 	 * Used to dereference a {@link FactoryBean} instance and distinguish it from
