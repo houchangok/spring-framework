@@ -72,8 +72,11 @@ public class HttpInvokerServiceExporter extends RemoteInvocationSerializingExpor
 			throws ServletException, IOException {
 
 		try {
+			//反序列化得到RemoteInvocation对象
 			RemoteInvocation invocation = readRemoteInvocation(request);
+			//反射调用目标方法，得到执行结果
 			RemoteInvocationResult result = invokeAndCreateResult(invocation, getProxy());
+//			/／将执行的返回结果反序列化给客户端，是否需要进行gzip压缩等等处理
 			writeRemoteInvocationResult(request, response, result);
 		}
 		catch (ClassNotFoundException ex) {
