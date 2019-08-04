@@ -19,6 +19,7 @@ package org.springframework.beans.factory.xml;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 /**
@@ -54,6 +55,12 @@ import org.springframework.core.io.Resource;
 @SuppressWarnings({"serial", "all"})
 public class XmlBeanFactory extends DefaultListableBeanFactory {
 
+	/**
+	 * 因为DefaultListableBeanFactory继承了BeanDefinitionRegistry,
+	 * 此处的this值的就是BeanDefinitionRegistry
+	 */
+
+	//由XmlBeanDefinitionReader提取并载入BeanDefinition
 	private final XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(this);
 
 
@@ -76,7 +83,12 @@ public class XmlBeanFactory extends DefaultListableBeanFactory {
 	 */
 	public XmlBeanFactory(Resource resource, BeanFactory parentBeanFactory) throws BeansException {
 		super(parentBeanFactory);
+		//loadBeanDefinitions这个过程是spring ioc容器中非常重要的一步
 		this.reader.loadBeanDefinitions(resource);
+
+		Resource res = new ClassPathResource("xx.xml");
+
+
 	}
 
 }
