@@ -132,6 +132,8 @@ public class HttpInvokerClientInterceptor extends RemoteInvocationBasedAccessor
 		return this.httpInvokerRequestExecutor;
 	}
 
+
+	//在真正触发远端调用之前，先实例化HttpInvokerRequestExecutor对象
 	@Override
 	public void afterPropertiesSet() {
 		super.afterPropertiesSet();
