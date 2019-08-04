@@ -132,6 +132,7 @@ public abstract class AbstractHttpInvokerRequestExecutor implements HttpInvokerR
 	public final RemoteInvocationResult executeRequest(
 			HttpInvokerClientConfiguration config, RemoteInvocation invocation) throws Exception {
 
+		//在进行远程调用之前，将请求的参数对象序列化，然后通过网络传输到服务端
 		ByteArrayOutputStream baos = getByteArrayOutputStream(invocation);
 		if (logger.isDebugEnabled()) {
 			logger.debug("Sending HTTP invoker request for service at [" + config.getServiceUrl() +

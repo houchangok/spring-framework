@@ -149,10 +149,12 @@ public class HttpInvokerClientInterceptor extends RemoteInvocationBasedAccessor
 			return "HTTP invoker proxy for service URL [" + getServiceUrl() + "]";
 		}
 
+       //创建一个远程调用数据对象，里面包含调用的服务方法名，参数，及参数类型等信息
 		RemoteInvocation invocation = createRemoteInvocation(methodInvocation);
 		RemoteInvocationResult result;
 
 		try {
+			//触发远程调用，最终执行是由SimpleHttpInvokerRequestExecutor负责
 			result = executeRequest(invocation, methodInvocation);
 		}
 		catch (Throwable ex) {

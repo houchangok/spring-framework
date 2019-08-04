@@ -84,13 +84,17 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	protected RemoteInvocationResult doExecuteRequest(
 			HttpInvokerClientConfiguration config, ByteArrayOutputStream baos)
 			throws IOException, ClassNotFoundException {
-
+        //打开连接
 		HttpURLConnection con = openConnection(config);
+        //配置链接参数
 		prepareConnection(con, baos.size());
+        //将请求参数流对象写入con对象流中
 		writeRequestBody(config, con, baos);
+		//响应码校验
 		validateResponse(config, con);
+        //获取远程调用返回的数据流
 		InputStream responseBody = readResponseBody(config, con);
-
+        //反序列化调用结果流
 		return readRemoteInvocationResult(responseBody, config.getCodebaseUrl());
 	}
 
