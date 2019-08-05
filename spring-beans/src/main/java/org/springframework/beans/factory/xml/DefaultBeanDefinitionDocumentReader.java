@@ -93,6 +93,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	@Override
 	public void registerBeanDefinitions(Document doc, XmlReaderContext readerContext) {
 		this.readerContext = readerContext;
+		//从<beans>标签开始解析
 		doRegisterBeanDefinitions(doc.getDocumentElement());
 	}
 
@@ -203,7 +204,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		}
 		//bean嵌套标签
 		else if (delegate.nodeNameEquals(ele, NESTED_BEANS_ELEMENT)) {
-			// recurse
+			// recurse   beans根标签
 			doRegisterBeanDefinitions(ele);
 		}
 	}
